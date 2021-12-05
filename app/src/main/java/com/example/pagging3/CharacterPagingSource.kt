@@ -9,6 +9,7 @@ import retrofit2.HttpException
 import java.io.IOException
 
 class CharacterPagingSource(val apiService: RetroService): PagingSource<Int, CharacterData>() {
+
     override fun getRefreshKey(state: PagingState<Int, CharacterData>): Int? {
 
         return state.anchorPosition
@@ -44,6 +45,7 @@ class CharacterPagingSource(val apiService: RetroService): PagingSource<Int, Cha
             LoadResult.Error(exception)
         }
     }
+
     companion object {
         private const val FIRST_PAGE_INDEX = 1
     }
