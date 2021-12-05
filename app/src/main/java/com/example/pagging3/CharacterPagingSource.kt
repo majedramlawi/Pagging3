@@ -5,6 +5,8 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.pagging3.network.CharacterData
 import com.example.pagging3.network.RetroService
+import retrofit2.HttpException
+import java.io.IOException
 
 class CharacterPagingSource(val apiService: RetroService): PagingSource<Int, CharacterData>() {
     override fun getRefreshKey(state: PagingState<Int, CharacterData>): Int? {
@@ -36,8 +38,10 @@ class CharacterPagingSource(val apiService: RetroService): PagingSource<Int, Cha
                     prevKey = prevPageNumber,
                     nextKey = nextPageNumber)
         }
-        catch (e: Exception) {
-            LoadResult.Error(e)
+        catch (exception: IOException) {
+            LoadResult.Error(exception)
+        } catch (exception: HttpException) {
+            LoadResult.Error(exception)
         }
     }
     companion object {
