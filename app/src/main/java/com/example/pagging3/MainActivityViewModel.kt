@@ -20,8 +20,10 @@ class MainActivityViewModel: ViewModel() {
         retroService = RetroInstance.getRetroInstance().create(RetroService::class.java)
     }
 
-    fun getListData(): Flow<PagingData<CharacterData>> {
-        return Pager (config = PagingConfig(pageSize = 20, maxSize = 200),
-        pagingSourceFactory = {CharacterPagingSource(retroService)}).flow.cachedIn(viewModelScope)
+    fun getListData(query: String): Flow<PagingData<CharacterData>> {
+        return Pager (
+            config = PagingConfig(pageSize = 20, maxSize = 200),
+            pagingSourceFactory = {CharacterPagingSource(retroService,query)}
+        ).flow.cachedIn(viewModelScope)
     }
 }

@@ -9,7 +9,8 @@ interface RetroService {
     //https://rickandmortyapi.com/api/character?page=1
     @GET("character")
     suspend fun getDataFromAPI(
-        @Query("page") query: Int,
+        @Query("page") page: Int,
+        @Query("query") query: String,
     ): RickAndMortyList
 }
 

@@ -2,7 +2,6 @@ package com.example.pagging3
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -35,8 +34,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViewModel() {
         val viewModel  = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        val query="search query"
         lifecycleScope.launchWhenCreated {
-            viewModel.getListData().collectLatest {
+            viewModel.getListData(query).collectLatest {
                 recyclerViewAdapter.submitData(it)
             }
         }
