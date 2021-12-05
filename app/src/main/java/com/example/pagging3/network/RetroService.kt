@@ -8,9 +8,19 @@ interface RetroService {
 
     //https://rickandmortyapi.com/api/character?page=1
     @GET("character")
-    suspend fun getDataFromAPI(@Query("page") query: Int): RickAndMortyList
+    suspend fun getDataFromAPI(
+        @Query("page") query: Int,
+    ): RickAndMortyList
 }
 
+/*
+@GET("posts")
+    suspend fun getCustomPosts(
+        @Query("userId") userId: Int,
+        @Query("_sort") sort: String,
+        @Query("_order") order: String
+    ): Response<List<PostDto>>
+ */
 /*
 {
     "info": {
