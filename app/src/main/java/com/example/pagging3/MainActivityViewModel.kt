@@ -14,16 +14,16 @@ import kotlinx.coroutines.flow.Flow
 
 class MainActivityViewModel: ViewModel() {
 
-    lateinit var retroService: RetroService
-
-    init {
-        retroService = RetroInstance.getRetroInstance().create(RetroService::class.java)
-    }
+    var retroService: RetroService = RetroInstance.getRetroInstance().create(RetroService::class.java)
 
     fun getListData(query: String): Flow<PagingData<CharacterData>> {
+
         return Pager (
             config = PagingConfig(pageSize = 20, maxSize = 200),
-            pagingSourceFactory = {CharacterPagingSource(retroService,query)}
+            pagingSourceFactory = {
+                CharacterPagingSource(retroService,query)
+            }
         ).flow.cachedIn(viewModelScope)
-    }
-}
+    }//end function
+
+}//end class

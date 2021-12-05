@@ -8,7 +8,7 @@ import com.example.pagging3.network.RetroService
 import retrofit2.HttpException
 import java.io.IOException
 
-class CharacterPagingSource(private val apiService: RetroService, val query: String): PagingSource<Int, CharacterData>() {
+class CharacterPagingSource(private val apiService: RetroService, private val query: String): PagingSource<Int, CharacterData>() {
 
     override fun getRefreshKey(state: PagingState<Int, CharacterData>): Int? {
 
